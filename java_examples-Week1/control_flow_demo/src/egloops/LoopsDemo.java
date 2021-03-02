@@ -43,6 +43,12 @@ public class LoopsDemo {
 			System.out.println("I will be executed once for sure");
 			//x--;
 		}while(x!=0);
+		
+		System.out.println("FOR EACH DEMO");
+		int arr[]= {100,1,23,1,3,13,1233,44,44};
+		for(int s:arr) {
+			System.out.println(s);
+		}
 
 	}
 
