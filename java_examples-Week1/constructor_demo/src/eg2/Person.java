@@ -8,7 +8,9 @@ public class Person {
 	private int age;
 	private Address personAddress; //has A relationShip
 	private Address perManentAddress;
-	
+	public Person() {
+		// TODO Auto-generated constructor stub
+	}
 	public Person(int id, String name) {
 		this.id = id;
 		this.name = name;

@@ -1,5 +1,7 @@
 package eg2;
 
+import java.util.Scanner;
+
 public class PersonMain {
 
 	public static void main(String[] args) {
@@ -30,6 +32,20 @@ public class PersonMain {
 		
 		//p4.personAddress;
 		System.out.println(p4);
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter person id");
+		int id=Integer.parseInt(sc.nextLine());
+		System.out.println("Enter person name");
+		String name=sc.nextLine();
+		System.out.println("Enter person city");
+		String city=sc.nextLine();
+		System.out.println("Enter person age");
+		int age=Integer.parseInt(sc.nextLine());
+		Person p5=new  Person(id, name, city, age, a);
+		System.out.println("p5");
+		System.out.println(p5);
+		
 		
 	}
 
