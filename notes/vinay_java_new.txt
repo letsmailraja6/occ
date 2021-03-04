@@ -484,14 +484,17 @@ ArrayList<E> class
 *by defualt 10 memory locations once filled, it will regrow
 by doing this -> previous_memory_size+ 50% of previous_memory_size.
 *Contiguous
+*Internally uses array
 
 Vector<E> class
 --------------------------
 *Gets all props of List.
 * it is thread safe class.
 *by default 10 memory locations once it is filled it will give 10 more
-aand goes on.
+and goes on.
 *Contiguous
+*Internally uses array.
+*Vector is a legacy class as well.
 
 LinkedList<E> class
 ----------------------------
@@ -501,6 +504,7 @@ LinkedList<E> class
 it will create one more.
 *Memory is not contiguous.
 *Insertion and Deletion is much faster here then other classes.
+*LinkedList maintains a node like a structure
 
 Set<E> interface
 ---------------------
