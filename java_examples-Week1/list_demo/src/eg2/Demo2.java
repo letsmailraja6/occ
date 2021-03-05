@@ -1,6 +1,7 @@
 package eg2;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,8 +27,12 @@ public class Demo2 {
 
 	public static void printPlayerList(List<Player> playerList) {
 		System.out.println("Printing " + playerList.size() + " no of player/s");
-		for (Player p : playerList) {
-			System.out.println(p);
+//		for (Player p : playerList) {
+//			System.out.println(p);
+//		}
+		Iterator<Player> p=playerList.iterator();
+		while(p.hasNext()) {
+			System.out.println(p.next());
 		}
 	}
 

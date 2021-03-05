@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.TreeMap;
 
 public class Demo1 {
@@ -72,8 +74,19 @@ public class Demo1 {
 		ht.remove(100);
 		System.out.println(ht);
 		
-		System.out.println(ht.keySet());
-		System.out.println(ht.values());
+		System.out.println(ht.keySet()); //just keys
+		System.out.println(ht.values()); //just values
+		
+		Set<Integer> set=ht.keySet();
+		System.out.println("\n\nIterating on Map using keySet()");
+		for(Integer i:set) {
+			System.out.println("key is : "+i+" value is : "+ht.get(i));
+		}
+		System.out.println("\n\nIterating on Map using entrySet()");
+		for(Entry<Integer, String> e:ht.entrySet()) {
+			System.out.println("key -> "+e.getKey()+" value -> "+e.getValue());
+		}
+		
 
 	}
 
