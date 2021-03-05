@@ -247,6 +247,8 @@ b)RunTimePolymorphism(dynamic binding) -> here the objects are binded at the run
 		encounter with 2methods with same name and arg list in which
 		it will consider the Child method and ignores the parent
 		method, this is what is called as method overriding.
+->When Overriding we can update the visibility from the parent method to the child or we can keep it same but we cannot reduce it.
+->We cannot override static, private and final.
 
 
 Object Casting
