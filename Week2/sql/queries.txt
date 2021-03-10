@@ -1,0 +1,124 @@
+create schema player_schema;
+
+
+create table player(
+id int,
+name varchar(20)
+);
+
+insert into player(id,name,age,city,gender) values(101,'Jeeva',23,'Bangalore','M');
+insert into player(id,name,age,city,gender) values(102,'Ragini',25,'Chennai','F');
+insert into player(id,name,age,city,gender) values(103,'Shiva',21,'Bangalore','M');
+insert into player(id,name,age,city,gender) values(104,'Ravi',23,'Bangalore','M');
+insert into player(id,name,age,city,gender) values(105,'Darshana',21,'Chennai','F');
+insert into player(id,name,age,city,gender) values(106,'Sam',33,'Delhi','M');
+insert into player(id,name,age,city,gender) values(107,'Porkudi',24,'Hyderabad','F');
+insert into player(id,name,age,city,gender) values(109,'Siva',34,'Chennai','M');
+
+select * from player;
+
+update player set age=23 where id=100;
+
+update player set age=23,city='Bangalore' where id=108;
+
+delete from player where id = 109;
+
+truncate table player ;
+
+
+select max(age) as maximum_player_age, min(age) min_player_age, avg(age) average_age, count(*)total_players
+from player;
+
+--Printing Player with max age
+select name from player where age = (select max(age) from player);
+
+
+--Printing players from specific city
+select id,name,age,city, gender from player where city='Bangalore';
+
+--Printing players from specific city and with specific age
+select id,name,age,city, gender from player where city='Bangalore' and age=23;
+
+--Printing players from specific city or with specific age
+select id,name,age,city, gender from player where city='Bangalore' or age=24;
+
+--Printing players between age range
+select id,name,age,city, gender from player where age between 20 and 24;
+
+--Printing players between age range sorted by age ascending
+select id,name,age,city, gender from player where age between 20 and 24 order by age; -- default is ascending
+
+--Printing players between age range sorted by age descending
+select id,name,age,city, gender from player where age between 20 and 24 order by age desc; -- use desc for descending
+
+-- count number of male and female players
+select gender, count(gender) as total from player group by gender;
+
+-- count number of players in individual city ordered by highest to lowest count
+select city, count(id) as total from player group by city  order by total desc;
+
+-- count number of players in individual city ordered by highest to lowest count but print only the city with more than 1 player
+select city, count(id) as total 
+from player 
+group by city 
+having count(id) >1
+order by total desc;
+
+
+--count of cities your players are from
+select count( distinct city) from player;
+
+--printing all teams
+select * from team;
+
+
+--print the players with their team names
+select p.id, p.name, p.city, p.age , t.teamname, t.location 
+from player p   join team t 
+on p.teamid =t.teamid ;
+
+--print the players with their team names for players with specific player city
+select p.id, p.name, p.city, p.age , t.teamname, t.location 
+from player p   join team t 
+on p.teamid =t.teamid 
+where city='Chennai';
+
+--print the players with their team names for players with specific player city sorted by age
+select p.id, p.name, p.city, p.age , t.teamname, t.location 
+from player p   join team t 
+on p.teamid =t.teamid 
+where city='Chennai'
+order by age desc;
+
+--print no of players from each team, print team name and count 
+select  t.teamname,count(p.id)player_count
+from player p join team t 
+on p.teamid =t.teamid 
+group by t.teamid ;
+
+--print no of players from each team, print team name and count, please consider all the teams, print the teams which is not having players as well orderedby the count of players in desc
+select  t.teamname,count(p.id)player_count
+from player p right join team t 
+on p.teamid =t.teamid 
+group by t.teamid 
+order by player_count desc;
+
+--print the players with their team names also print the players who are not part of any team as well
+select p.id, p.name, p.city, p.age , t.teamname, t.location 
+from player p  left outer join team t 
+on p.teamid =t.teamid ;
+
+--print the players with their team names also print the players who are not part of any team as well, for players who are not part of any team print as Not allocated
+select p.id, p.name, p.city, p.age , coalesce (t.teamname,'Not Allocated')team_name, coalesce (t.location,'NOT ALLOCATED')team_location
+from player p  left join team t 
+on p.teamid =t.teamid ;
+
+--print all the players and all the teams
+select p.id, p.name, p.city, p.age , t.teamname, t.location 
+from player p  full outer join team t 
+on p.teamid =t.teamid ;
+
+
+
+
+
