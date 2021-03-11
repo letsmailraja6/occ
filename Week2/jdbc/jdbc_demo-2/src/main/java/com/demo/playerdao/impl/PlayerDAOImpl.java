@@ -101,4 +101,46 @@ public class PlayerDAOImpl implements PlayerDAO {
 		return null;
 	}
 
+	@Override
+	public List<Player> getAllPlayersByTeamName(String teamName) {
+		List<Player> playerList=new ArrayList<>();
+		try(Connection connection=PostgresConnection.getConnection()){
+			String sql = "select id,name,age,gender,city from player_schema.player p join player_schema.team t on p.teamid=t.teamid where t.teamname=?";
+			PreparedStatement preparedStatement=connection.prepareStatement(sql);
+			preparedStatement.setString(1, teamName);
+			
+			ResultSet resultSet=preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				Player player=new Player();
+				player.setId(resultSet.getInt("id"));
+				player.setAge(resultSet.getInt("age"));
+				player.setCity(resultSet.getString("city"));
+				player.setGender(resultSet.getString("gender"));
+				player.setName(resultSet.getString("name"));
+				playerList.add(player);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			System.out.println(e);
+		}
+		return playerList;
+	}
+
+	@Override
+	public List<Player> getAllPlayersByTeamLocation(String location) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Player> getAllPlayersByTeamId(String teamid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Player> getAllPlayersByCity(String city) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

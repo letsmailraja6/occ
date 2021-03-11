@@ -29,11 +29,24 @@ public class PlayerMain {
 //			System.out.println(player);
 //		}
 
-		List<Player> playerList = dao.getAllPlayers();
+//		List<Player> playerList = dao.getAllPlayers();
+//		if (playerList.size() == 0) {
+//			System.out.println("No players as of now in DB");
+//		} else {
+//			System.out.println("Total there are " + playerList.size() + " no of player/s in DB");
+//			System.out.println("Printing their details");
+//			for (Player p : playerList) {
+//				System.out.println(p);
+//			}
+//		}
+		
+		
+		String teamName="ABC Riders";
+		List<Player> playerList = dao.getAllPlayersByTeamName(teamName);
 		if (playerList.size() == 0) {
-			System.out.println("No players as of now in DB");
+			System.out.println("No players as of now from the teamName "+teamName);
 		} else {
-			System.out.println("Total there are " + playerList.size() + " no of player/s in DB");
+			System.out.println("Total there are " + playerList.size() + " no of player/s in DB from team : "+teamName);
 			System.out.println("Printing their details");
 			for (Player p : playerList) {
 				System.out.println(p);
